@@ -28,23 +28,38 @@ public class WeatherParser implements weatherDAO {
         Weather result = new Weather();
         String text;
         Elements els = doc.body().getAllElements();
-        for(String s:config.getDataNow()){
+
+        for(WeatherParserConfig.WPCitem item:config.getDataNow()){
             for (Element el:els) {
-                if (el.className().equals(s)) {
-                    els = el.getAllElements();
-//                    System.out.println(s + ":" + el.text());
+                int counter = 0;
+                switch (item.getParseType()){
+                    case className:{
+                        if (el.className().equals(item.getName())) {
+                            els = el.getAllElements();
+//                    System.out.println(s + ":" + el.text() + "|" + el.toString());
+                        }
+                        break;}
+                    case num:{
+                        if (counter == item.getNum()){
+                            els = el.getAllElements();
+//                    System.out.println(s + ":" + el.text() + "|" + el.toString());
+                        }
+                        break; }
                 }
+                counter++;
             }
         }
+        int i = 0;
         for (Element el2:els){
-//            System.out.println(el2.className() + ":" + el2.text());
+//            System.out.println("" + i + "  " + el2.className() + ":" + el2.text() + "|" + el2.toString());
             try {
-//                System.out.println("!" + Integer.parseInt(el2.text()));
+//                System.out.println("!" + Integer.parseInt(el2.text().replaceAll("°","")));
                 result.setDate(new Date());
-                result.setTempepature(Float.parseFloat(el2.text()));
+                result.setTempepature(Float.parseFloat(el2.text().replaceAll("°","")));
             }catch (Exception e){
 
             }
+            i++;
         }
         return result;
     }

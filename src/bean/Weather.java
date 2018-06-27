@@ -5,6 +5,9 @@ import java.util.Date;
 public class Weather {
     private Date date;
     private double tempepature;
+    private double wind;
+    private double preasure;
+    private double humidity;
 
     public Weather() {
     }
