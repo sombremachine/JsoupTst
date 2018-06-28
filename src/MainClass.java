@@ -40,5 +40,17 @@ public class MainClass {
         parser = new WeatherParser(config);
         weather = parser.getWeather();
         System.out.println(weather.getDate() + " : " + weather.getTempepature() + "°C - точка росы");
+
+        classList = new ArrayList<>();
+        classList.add(new WeatherParserConfig.WPCitem(WeatherParserConfig.ParseType.className,"c1"));
+        classList.add(new WeatherParserConfig.WPCitem(WeatherParserConfig.ParseType.className,"right txt-tight"));
+        classList.add(new WeatherParserConfig.WPCitem(WeatherParserConfig.ParseType.num,8));
+        config = new WeatherParserConfig();
+        config.setUrl("https://www.foreca.ru/Russia/Moskva");
+        config.setDataNow(classList);
+
+        parser = new WeatherParser(config);
+        weather = parser.getWeather();
+        System.out.println(weather.getDate() + " : " + weather.getTempepature() + "% - влажность");
     }
 }
