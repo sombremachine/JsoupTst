@@ -34,7 +34,7 @@ public class WeatherParserConfig {
         public WPCitem(ParseType parseType, String name) {
             this.parseType = parseType;
             this.name = name;
-            this.num = 0;
+            this.num = -1;
         }
 
         public WPCitem(ParseType parseType, int num) {
@@ -45,7 +45,8 @@ public class WeatherParserConfig {
     }
 
     private String url;
-    private List<WPCitem> dataNow;
+
+    private List<WPCitem> pathItems;
 
     public WeatherParserConfig() {
     }
@@ -58,11 +59,11 @@ public class WeatherParserConfig {
         this.url = url;
     }
 
-    public List<WPCitem> getDataNow() {
-        return dataNow;
+    public List<WPCitem> getPathItems() {
+        return pathItems;
     }
 
-    public void setDataNow(List<WPCitem> dataNow) {
-        this.dataNow = dataNow;
+    public void setPathItems(List<WPCitem> pathItems) {
+        this.pathItems = pathItems;
     }
 }
